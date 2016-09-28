@@ -51,7 +51,7 @@
 }
 
 #mot {
-    font-size: 2em;
+    overflow-wrap: break-word;
 }
 
 .valeur-direct {
