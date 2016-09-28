@@ -1,7 +1,7 @@
-/*body {
-    font-family: 'Roboto';
-    font-weight: normal;
-}*/
+#conteneur {
+    margin-left: 64px;
+    margin-right: 64px;
+}
 
 #plateau {
     height: 512px;
