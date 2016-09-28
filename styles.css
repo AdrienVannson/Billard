@@ -1,0 +1,30 @@
+body {
+    font-family: 'Roboto';
+    font-weight: normal;
+}
+
+#plateau {
+    height: 512px;
+    width: 1024px;
+    border: 32px solid grey;
+    margin: auto;
+
+    background-color: grey;
+}
+
+#bille {
+    position: relative;
+    transform: translate(-32px, -32px);
+
+    height: 64px;
+    width: 64px;
+    border-radius: 32px;
+
+    background-color: red;
+
+    transition: left .1s linear, top .1s linear;
+}
+
+#mot {
+    font-size: 2em;
+}
