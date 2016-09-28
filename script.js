@@ -1,35 +1,49 @@
 /*
- * Plateau 
+ * Variables globales
  */
 
-var plateauLargeur = 1024;
-var plateauHauteur = 512;
+// Plateau
+var plateauLargeur;
+var plateauHauteur;
+
+// Bille
+var deltaX;
+var deltaY;
+
+// Calcul
+var tempsActuel;
+var cachePositions; // Positions en fonction du temps
+
+// DOM
+var bille;
+var mot;
+
 
 
 /*
  * Mot
  */
 
-var mot = document.getElementById('mot');
-
-function ajouterLettre (lettre) {
+function ajouterLettre (lettre)
+{
     mot.innerText += lettre;
 }
+
 
 /*
  * Bille
  */
 
-var bille = document.getElementById('bille');
+function getPosition (temps)
+{
+    if (cachePositions.length > temps) {
+        return cachePositions[temps];
+    }
+    
+    var pos = getPosition (temps-1);
+    var x = pos[0];
+    var y = pos[1]; 
 
-var x = 25;
-var y = 25;
-
-var deltaX = prompt("Vitesse X", 0);
-var deltaY = prompt("Vitesse Y", 0);
-
-
-function deplacer () {
     x += deltaX;
 
     if (x >= plateauLargeur) {
@@ -42,10 +56,6 @@ function deplacer () {
         x = 0 - x;
         ajouterLettre('G');
     }
-
-    console.log( bille.style.left);
-    bille.style.left = x + 'px';
-    console.log( bille.style.left);
 
 
     y += deltaY;
@@ -61,7 +71,44 @@ function deplacer () {
         ajouterLettre('B');
     }
 
-    bille.style.top = plateauHauteur - y + 'px';
+    var result = [x, y];
+
+    cachePositions.push(result);
+    return result;
 }
 
-setInterval(deplacer, 5000);
+function allerAuTemps (temps)
+{
+    var pos = getPosition(temps);
+
+    bille.style.left = pos[0] + 'px';
+    bille.style.top = plateauHauteur - pos[1] + 'px';
+
+    tempsActuel = temps;
+}
+
+
+/*
+ * Global 
+ */
+
+function demarrer ()
+{
+    cachePositions = [[10, 10]];
+    tempsActuel = 0;
+
+    plateauLargeur = 1024;
+    plateauHauteur = 512;
+
+    deltaX = 25;
+    deltaY = 10;
+
+    bille = document.getElementById('bille');
+    mot = document.getElementById('mot');
+
+    setInterval(function() {
+        allerAuTemps(tempsActuel+1)
+    }, 100);
+}
+
+demarrer();
