@@ -6,19 +6,28 @@
     box-shadow: 0 1px 0 0 #fff !important;
 }
 
-
 #conteneur {
     margin-left: 64px;
     margin-right: 64px;
 }
 
-#plateau {
-    height: 512px;
-    width: 1024px;
-    border: 32px solid grey;
+
+#conteneur-plateau {
     margin: auto;
+    position: relative;
 
     background-color: grey;
+}
+
+#plateau {
+    position: absolute;
+
+    top: 32px;
+    bottom: 32px;
+    left: 32px;
+    right: 32px;
+
+    border: 1px solid #000;
 }
 
 #bille {

@@ -32,6 +32,11 @@ function ajouterLettre (lettre)
     mot.innerText += lettre;
 }
 
+function effacerMot ()
+{
+    mot.innerText = '';
+}
+
 
 /*
  * Bille
@@ -115,7 +120,6 @@ function demarrer ()
 {
     var elementsFormulaire = document.forms['parametres'].elements;
 
-
     plateauLargeur = +elementsFormulaire['largeur-plateau'].value;
     plateauHauteur = +elementsFormulaire['hauteur-plateau'].value;
 
@@ -130,6 +134,13 @@ function demarrer ()
 
     bille = document.getElementById('bille');
     mot = document.getElementById('mot');
+
+
+    var conteneurPlateau = document.getElementById('conteneur-plateau');
+    conteneurPlateau.style.height = plateauHauteur + 64 + 'px';
+    conteneurPlateau.style.width = plateauLargeur + 64 + 'px';
+
+    effacerMot();
 
     startIntervalle();
 }
