@@ -107,20 +107,26 @@ function startIntervalle ()
     stopIntervalle();
     
     intervalleId = setInterval(function() {
-        allerAuTemps(tempsActuel+1)
+        allerAuTemps(tempsActuel+1);
     }, 100);
 }
 
 function demarrer ()
 {
-    cachePositions = [[10, 10]];
+    var elementsFormulaire = document.forms['parametres'].elements;
+
+
+    plateauLargeur = +elementsFormulaire['largeur-plateau'].value;
+    plateauHauteur = +elementsFormulaire['hauteur-plateau'].value;
+
+    deltaX = +elementsFormulaire['vitesse-x'].value;
+    deltaY = +elementsFormulaire['vitesse-y'].value;
+
+    cachePositions = [[
+        +elementsFormulaire['balle-x'].value,
+        +elementsFormulaire['balle-y'].value
+    ]];
     tempsActuel = 0;
-
-    plateauLargeur = document.forms['parametres'].elements['largeur-plateau'].value;
-    plateauHauteur = 512;
-
-    deltaX = 25;
-    deltaY = 10;
 
     bille = document.getElementById('bille');
     mot = document.getElementById('mot');
