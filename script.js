@@ -18,6 +18,9 @@ var cachePositions; // Positions en fonction du temps
 var bille;
 var mot;
 
+// Général
+var intervalleId = -1; 
+
 
 
 /*
@@ -92,12 +95,28 @@ function allerAuTemps (temps)
  * Global 
  */
 
+function stopIntervalle ()
+{
+    if (intervalleId != -1) {
+        clearInterval(intervalleId);
+    }
+}
+
+function startIntervalle ()
+{
+    stopIntervalle();
+    
+    intervalleId = setInterval(function() {
+        allerAuTemps(tempsActuel+1)
+    }, 100);
+}
+
 function demarrer ()
 {
     cachePositions = [[10, 10]];
     tempsActuel = 0;
 
-    plateauLargeur = 1024;
+    plateauLargeur = document.forms['parametres'].elements['largeur-plateau'].value;
     plateauHauteur = 512;
 
     deltaX = 25;
@@ -106,9 +125,7 @@ function demarrer ()
     bille = document.getElementById('bille');
     mot = document.getElementById('mot');
 
-    setInterval(function() {
-        allerAuTemps(tempsActuel+1)
-    }, 100);
+    startIntervalle();
 }
 
 demarrer();
