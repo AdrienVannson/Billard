@@ -116,6 +116,20 @@ function startIntervalle ()
     }, 100);
 }
 
+function pause () {
+    stopIntervalle();
+
+    document.getElementById('pause').style.display = 'none';
+    document.getElementById('lecture').style.display = 'block';
+}
+
+function lecture () {
+    startIntervalle();
+
+    document.getElementById('pause').style.display = 'block';
+    document.getElementById('lecture').style.display = 'none';
+}
+
 function demarrer ()
 {
     var elementsFormulaire = document.forms['parametres'].elements;
@@ -142,7 +156,7 @@ function demarrer ()
 
     effacerMot();
 
-    startIntervalle();
+    lecture();
 }
 
 demarrer();
