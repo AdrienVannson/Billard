@@ -53,3 +53,8 @@
 #mot {
     font-size: 2em;
 }
+
+.valeur-direct {
+    float: right;
+    font-weight: bold;
+}

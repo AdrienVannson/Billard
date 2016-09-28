@@ -17,6 +17,9 @@ var cachePositions; // Positions en fonction du temps
 // DOM
 var bille;
 var mot;
+var directTemps;
+var directX;
+var directY;
 
 // Général
 var intervalleId = -1; 
@@ -93,6 +96,10 @@ function allerAuTemps (temps)
     bille.style.top = plateauHauteur - pos[1] + 'px';
 
     tempsActuel = temps;
+
+    directTemps.innerText = temps;
+    directX.innerText = pos[0];
+    directY.innerText = pos[1];
 }
 
 
@@ -148,6 +155,9 @@ function demarrer ()
 
     bille = document.getElementById('bille');
     mot = document.getElementById('mot');
+    directTemps = document.getElementById('direct-temps');
+    directX = document.getElementById('direct-x');
+    directY = document.getElementById('direct-y');
 
 
     var conteneurPlateau = document.getElementById('conteneur-plateau');
