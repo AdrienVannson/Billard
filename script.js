@@ -104,6 +104,10 @@ function allerAuTemps (temps)
     directY.innerText = pos[1];
 }
 
+function deplacerTemps (delta)
+{
+    allerAuTemps(tempsActuel + delta);
+}
 
 /*
  * Global 
