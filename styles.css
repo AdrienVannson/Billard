@@ -6,17 +6,6 @@
     box-shadow: 0 1px 0 0 #fff !important;
 }
 
-.material-icons {
-    background-color: #fff;
-    color: #000;
-
-    transition: all .5s;
-}
-.material-icons:hover {
-    background-color: #000;
-    color: #fff;
-}
-
 #conteneur {
     margin-left: 64px;
     margin-right: 64px;

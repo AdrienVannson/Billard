@@ -22,7 +22,9 @@ var directX;
 var directY;
 
 // Général
-var intervalleId = -1; 
+var intervalleId = -1;
+
+var enPause = true;
 
 
 
@@ -124,17 +126,16 @@ function startIntervalle ()
 }
 
 function pause () {
-    stopIntervalle();
+    if (enPause) {
+        startIntervalle();
+        document.getElementById('pause').firstChild.innerText = "pause";
+    }
+    else {
+        stopIntervalle();
+        document.getElementById('pause').firstChild.innerText = "play_arrow";
+    }
 
-    document.getElementById('pause').style.display = 'none';
-    document.getElementById('lecture').style.display = 'block';
-}
-
-function lecture () {
-    startIntervalle();
-
-    document.getElementById('pause').style.display = 'block';
-    document.getElementById('lecture').style.display = 'none';
+    enPause = !enPause;
 }
 
 function demarrer ()
@@ -166,7 +167,7 @@ function demarrer ()
 
     effacerMot();
 
-    lecture();
+    pause();
 }
 
 demarrer();
