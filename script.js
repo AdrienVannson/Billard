@@ -175,3 +175,8 @@ function demarrer ()
 }
 
 demarrer();
+
+
+$(document).ready(function(){
+    $('#fenetre-calcul').modal();
+});
