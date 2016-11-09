@@ -9,8 +9,9 @@ function rechercherMot ()
     var mot = document.forms['formulaire-mot'].elements['mot'].value;
 
     if (! /^[HBGD]+$/.test(mot)) { // Le mot donné est invalide
-        alert('Mot invalide');
+        Materialize.toast('Mot invalide', 3000);
         return;
     }
-    alert('Mot valide');
+    
+
 }
