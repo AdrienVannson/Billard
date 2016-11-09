@@ -159,7 +159,7 @@ function demarrer ()
     tempsActuel = 0;
 
     bille = document.getElementById('bille');
-    mot = document.getElementById('mot');
+    mot = document.getElementById('affichage-mot');
     directTemps = document.getElementById('direct-temps');
     directX = document.getElementById('direct-x');
     directY = document.getElementById('direct-y');

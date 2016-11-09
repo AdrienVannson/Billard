@@ -1,7 +1,7 @@
-.input-field label {
+#formulaire-parametres .input-field label {
     color: #fff !important;
 }
- .input-field input[type=text]:focus {
+ #formulaire-parametres .input-field input[type=text]:focus {
     border-bottom: 1px solid #fff !important;
     box-shadow: 0 1px 0 0 #fff !important;
 }
@@ -39,7 +39,7 @@
     transition: left .1s linear, top .1s linear;
 }
 
-#mot {
+#affichage-mot {
     overflow-wrap: break-word;
 }
 
