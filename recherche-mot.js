@@ -52,6 +52,35 @@ function getIntervalles (mot)
     return intervalles;
 }
 
+
+function getPositions (debut, fin, nbPositions)
+{
+    var positions = [];
+    var taille = (fin-debut) / (nbPositions-1);
+
+    for (var iPosition=0; iPosition<nbPositions; iPosition++) {
+        positions.push(debut + iPosition*taille);
+    }
+
+    return positions;
+}
+
+
+function estValide (positionsChoisies, intervalles)
+{
+    for (var iPosition=0; iPosition<positionsChoisies.length; iPosition++) {
+        var position = positionsChoisies[iPosition];
+        var intervalle = intervalles[iPosition];
+
+        if (position < intervalle[0] || position > intervalle[1]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
 function rechercherMot ()
 {
     var mot = document.forms['formulaire-mot'].elements['mot'].value;
@@ -62,5 +91,13 @@ function rechercherMot ()
     }
     
     var intervalles = getIntervalles(mot);
-    console.log(intervalles);
+
+    var resultats = [
+        estValide( getPositions(intervalles[0][0], intervalles[intervalles.length-1][0], intervalles.length), intervalles),
+        estValide( getPositions(intervalles[0][0], intervalles[intervalles.length-1][1], intervalles.length), intervalles),
+        estValide( getPositions(intervalles[0][1], intervalles[intervalles.length-1][0], intervalles.length), intervalles),
+        estValide( getPositions(intervalles[0][1], intervalles[intervalles.length-1][1], intervalles.length), intervalles)
+    ];
+
+    alert(resultats)
 }
