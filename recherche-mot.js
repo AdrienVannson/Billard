@@ -12,7 +12,7 @@ var directionsOpposees = {
 };
 
 
-function memeOrientation (a, b) // Vérifie que deux directions sont dans la même orientation (verticale ou horizontale)
+function getMemeOrientation (a, b) // Vérifie que deux directions sont dans la même orientation (verticale ou horizontale)
 {
     if (a == b || a == directionsOpposees[b]) {
         return true;
@@ -20,6 +20,10 @@ function memeOrientation (a, b) // Vérifie que deux directions sont dans la mê
     return false;
 }
 
+
+/*
+ * Intervalles
+ */
 
 function getIntervalles (mot)
 {
@@ -30,7 +34,7 @@ function getIntervalles (mot)
     var nbFrontieres = 0;
 
     for (var iCaractere=0; iCaractere<=mot.length; iCaractere++) {
-        if (iCaractere == mot.length || memeOrientation(mot[iCaractere], orientationDepart)) {
+        if (iCaractere == mot.length || getMemeOrientation(mot[iCaractere], orientationDepart)) {
             var tailleIntervalle = 1 / nbIntervallesEnCours;
 
             for (var iIntervalleAjoute=0; iIntervalleAjoute<nbIntervallesEnCours; iIntervalleAjoute++) {
@@ -53,18 +57,9 @@ function getIntervalles (mot)
 }
 
 
-function getPositions (debut, fin, nbPositions)
-{
-    var positions = [];
-    var taille = (fin-debut) / (nbPositions-1);
-
-    for (var iPosition=0; iPosition<nbPositions; iPosition++) {
-        positions.push(debut + iPosition*taille);
-    }
-
-    return positions;
-}
-
+/*
+ * Vérification
+ */
 
 function estValide (positionsChoisies, intervalles)
 {
@@ -81,6 +76,10 @@ function estValide (positionsChoisies, intervalles)
 }
 
 
+/*
+ * Recherche
+ */
+
 function rechercherMot ()
 {
     var mot = document.forms['formulaire-mot'].elements['mot'].value;
@@ -91,13 +90,5 @@ function rechercherMot ()
     }
     
     var intervalles = getIntervalles(mot);
-
-    var resultats = [
-        estValide( getPositions(intervalles[0][0], intervalles[intervalles.length-1][0], intervalles.length), intervalles),
-        estValide( getPositions(intervalles[0][0], intervalles[intervalles.length-1][1], intervalles.length), intervalles),
-        estValide( getPositions(intervalles[0][1], intervalles[intervalles.length-1][0], intervalles.length), intervalles),
-        estValide( getPositions(intervalles[0][1], intervalles[intervalles.length-1][1], intervalles.length), intervalles)
-    ];
-
-    alert(resultats)
+    console.log(intervalles);
 }
