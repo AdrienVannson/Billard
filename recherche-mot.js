@@ -58,6 +58,32 @@ function getIntervalles (mot)
 
 
 /*
+ * Système d'inéquations
+ */
+
+// ax + y + b COMP 0
+var Inequation = function (a=0, b=0, comp='<')
+{
+    this.a = a;
+    this.b = b;
+    this.comp =  comp; // < OU >
+};
+
+var Point = function (x=0, y=0)
+{
+    this.x = x;
+    this.y = y;
+};
+
+function resoudreSysteme (systeme)
+{
+    var points = [];
+
+    return new Point(1, 1);
+}
+
+
+/*
  * Vérification
  */
 
@@ -91,4 +117,20 @@ function rechercherMot ()
     
     var intervalles = getIntervalles(mot);
     console.log(intervalles);
+
+    inequations = []; // TODO : ajouter x>0 ; y>0 et y<x
+
+    intervalles.forEach(function(intervalle) {
+
+        // Début
+        var inequationDebut = new Inequation ();
+
+        inequations.push(inequationDebut);
+
+        // Fin
+        var inequationFin = new Inequation ();
+
+        inequations.push(inequationFin);
+
+    }, this);
 }
