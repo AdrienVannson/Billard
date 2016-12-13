@@ -75,11 +75,32 @@ var Point = function (x=0, y=0)
     this.y = y;
 };
 
-function resoudreSysteme (systeme)
+function getBarycentre (points)
 {
-    var points = [];
+    var sommeX = 0;
+    var sommeY = 0;
 
-    return new Point(1, 1);
+    points.forEach(function(point) {
+        sommeX += point.x;
+        sommeY += point.y;
+    }, this);
+
+    return new Point(sommeX/points.length, sommeY/points.length);
+}
+
+function resoudreSysteme (inequations)
+{
+    // Sommets du polygone des contraintes, par ordre trigonométrique
+    // Contraintes de départ : x>0 ; x<1000 ; y > 0 ; y < 1000
+    var points = [
+        new Point(0, 0),
+        new Point(1000, 0),
+        new Point(1000, 1000),
+        new Point(0, 1000)
+    ];
+
+
+    return getBarycentre(points);
 }
 
 
@@ -123,14 +144,17 @@ function rechercherMot ()
     intervalles.forEach(function(intervalle) {
 
         // Début
-        var inequationDebut = new Inequation ();
+        var inequationDebut = new Inequation();
 
         inequations.push(inequationDebut);
 
         // Fin
-        var inequationFin = new Inequation ();
+        var inequationFin = new Inequation();
 
         inequations.push(inequationFin);
 
     }, this);
+
+    var solutionSysteme = resoudreSysteme(inequations);
+    console.log(solutionSysteme);
 }
