@@ -75,6 +75,20 @@ var Point = function (x=0, y=0)
     this.y = y;
 };
 
+function getEstSolution (inequation, point)
+{
+    var membreGauche = inequation.a * point.x + inequation.b;
+    var membreDroite = point.y;
+
+    if (inequation.comp == '<') {
+        return membreGauche < membreDroite;
+    }
+    else {
+        return membreGauche > membreDroite;
+    }
+}
+
+
 function getBarycentre (points)
 {
     var sommeX = 0;
