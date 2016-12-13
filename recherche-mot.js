@@ -114,6 +114,46 @@ function resoudreSysteme (inequations)
     ];
 
 
+    inequations.forEach(function(inequation) {
+
+        // Début inclus, fin excluse
+        var iDebut = -1;
+        var iFin = -1;
+
+        var nbPoints = point.length;
+
+        points.forEach(function(point, iPoint) {
+
+            var iPrecedant = iPoint == 0 ? nbPoints-1 : iPoint-1;
+            var iSuivant = iPoint == nbPoints-1 ? 0 : iPoint+1;
+
+            if (!getEstSolution(inequation, point)) {
+
+                if (getEstSolution(inequation, points[iPrecedant])) {
+                    iDebut = iPoint;
+                }
+                if (getEstSolution(inequation, points[iSuivant])) {
+                    iFin = iSuivant;
+                }
+
+            }
+
+        }, this);
+
+        if (iDebut == -1 && iFin == -1) {
+
+            if (!getEstSolution(inequation, points[0])) { // Le système n'admet pas de solution
+                return -1;
+            }
+
+        }
+        else { // L'inéquation ajoute une contrainte
+            // TODO
+        }
+
+    }, this);
+
+
     return getBarycentre(points);
 }
 
