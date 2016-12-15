@@ -4,7 +4,7 @@
  * 
  */
 
-var directionsOpposees = {
+var DIRECTIONS_OPPOSEES = {
     'H' : 'B',
     'B' : 'H',
     'G' : 'D',
@@ -21,7 +21,7 @@ var LETTRE_SUIVANTE = { // Lettre suivante lors d'une rotation du plateau de 90�
 
 function getMemeOrientation (a, b) // Vérifie que deux directions sont dans la même orientation (verticale ou horizontale)
 {
-    if (a == b || a == directionsOpposees[b]) {
+    if (a == b || a == DIRECTIONS_OPPOSEES[b]) {
         return true;
     }
     return false;
