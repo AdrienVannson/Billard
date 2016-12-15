@@ -264,6 +264,7 @@ function rechercherMot ()
     elementsFormulaire['vitesse-x'].value = vxDepart;
     elementsFormulaire['vitesse-y'].value = vyDepart;
 
+    Materialize.toast('Solution trouvée !', 3000);
     $('#fenetre-calcul').modal('close');
     demarrer();
 }
