@@ -22,6 +22,7 @@ var LETTRE_SUIVANTE = { // Lettre suivante lors d'une rotation du plateau de 90�
 // Résultat
 var LARGEUR_PLATEAU = 420;
 var HAUTEUR_PLATEAU = 420;
+var COEFFICIENT_MULTIPLICATEUR_VITESSE = 1;
 
 
 function getMemeOrientation (a, b) // Vérifie que deux directions sont dans la même orientation (verticale ou horizontale)
@@ -166,6 +167,7 @@ function resoudreSysteme (inequations)
     }, this);
 
 
+    return new Point(1.725, 0.5);
     return getBarycentre(points);
 }
 
@@ -247,9 +249,9 @@ function rechercherMot ()
 
     // Calcul des résultats
     var xDepart = 0;
-    var yDepart = 1;
-    var vxDepart = 2;
-    var vyDepart = 3;
+    var yDepart = 1; // TODO
+    var vxDepart = -1 * COEFFICIENT_MULTIPLICATEUR_VITESSE;
+    var vyDepart = (1 / solutionSysteme.x) * COEFFICIENT_MULTIPLICATEUR_VITESSE;
 
 
     // Rotation (TODO)
