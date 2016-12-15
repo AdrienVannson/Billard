@@ -4,6 +4,7 @@
  * 
  */
 
+// Mots
 var DIRECTIONS_OPPOSEES = {
     'H' : 'B',
     'B' : 'H',
@@ -17,6 +18,10 @@ var LETTRE_SUIVANTE = { // Lettre suivante lors d'une rotation du plateau de 90�
     'G': 'B',
     'D': 'H'
 };
+
+// Résultat
+var LARGEUR_PLATEAU = 420;
+var HAUTEUR_PLATEAU = 420;
 
 
 function getMemeOrientation (a, b) // Vérifie que deux directions sont dans la même orientation (verticale ou horizontale)
@@ -238,4 +243,27 @@ function rechercherMot ()
         Materialize.toast('Aucune solution', 3000);
         return;
     }
+
+
+    // Calcul des résultats
+    var xDepart = 0;
+    var yDepart = 1;
+    var vxDepart = 2;
+    var vyDepart = 3;
+
+
+    // Rotation (TODO)
+
+
+    // Affichage des résultats
+    var elementsFormulaire = document.forms['parametres'].elements;
+    elementsFormulaire['largeur-plateau'].value = LARGEUR_PLATEAU;
+    elementsFormulaire['hauteur-plateau'].value = HAUTEUR_PLATEAU;
+    elementsFormulaire['balle-x'].value = xDepart;
+    elementsFormulaire['balle-y'].value = yDepart;
+    elementsFormulaire['vitesse-x'].value = vxDepart;
+    elementsFormulaire['vitesse-y'].value = vyDepart;
+
+    $('#fenetre-calcul').modal('close');
+    demarrer();
 }
