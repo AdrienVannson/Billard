@@ -120,7 +120,7 @@ function resoudreSysteme (inequations)
         var iDebut = -1;
         var iFin = -1;
 
-        var nbPoints = point.length;
+        var nbPoints = points.length;
 
         points.forEach(function(point, iPoint) {
 
@@ -211,4 +211,8 @@ function rechercherMot ()
 
     var solutionSysteme = resoudreSysteme(inequations);
     console.log(solutionSysteme);
+
+    if (solutionSysteme == -1) {
+        Materialize.toast('Aucune solution', 3000);
+    }
 }
