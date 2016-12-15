@@ -11,6 +11,13 @@ var directionsOpposees = {
     'D' : 'G'
 };
 
+var LETTRE_SUIVANTE = { // Lettre suivante lors d'une rotation du plateau de 90° dans le sens trigonomètrique
+    'H': 'G',
+    'B': 'D',
+    'G': 'B',
+    'D': 'H'
+};
+
 
 function getMemeOrientation (a, b) // Vérifie que deux directions sont dans la même orientation (verticale ou horizontale)
 {
@@ -185,11 +192,26 @@ function rechercherMot ()
 {
     var mot = document.forms['formulaire-mot'].elements['mot'].value;
 
+    // Vérification de la validité du mot
     if (! /^[HBGD]+$/.test(mot)) { // Le mot donné est invalide
         Materialize.toast('Mot invalide', 3000);
         return;
     }
+
+    // Rotation du mot pour qu'il commence par un G
+    var nbRotations = 0;
+
+    while (mot[0] != 'G') {
+        var nouveauMot = "";
+        for (var iLettre=0; iLettre<mot.length; iLettre++) {
+            nouveauMot += LETTRE_SUIVANTE[mot[iLettre]];
+            nbRotations++;
+        }
+        mot = nouveauMot;
+    }
     
+
+    // Génération des intervalles
     var intervalles = getIntervalles(mot);
     console.log(intervalles);
 
@@ -214,5 +236,6 @@ function rechercherMot ()
 
     if (solutionSysteme == -1) {
         Materialize.toast('Aucune solution', 3000);
+        return;
     }
 }
