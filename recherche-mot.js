@@ -247,10 +247,14 @@ function rechercherMot ()
 
 
     // Calcul des résultats
-    var xDepart = 0;
-    var yDepart = 1; // TODO
     var vxDepart = -1 * COEFFICIENT_MULTIPLICATEUR_VITESSE;
     var vyDepart = (1 / solutionSysteme.x) * COEFFICIENT_MULTIPLICATEUR_VITESSE;
+    var xDepart = 0;
+    var yDepart = Math.abs((COTE_PLATEAU * solutionSysteme.y) * vyDepart / vxDepart);
+
+    if (mot[1] == 'H') {
+        yDepart = COTE_PLATEAU - yDepart;
+    }
 
 
     // Rotation (TODO)
