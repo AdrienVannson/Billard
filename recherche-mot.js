@@ -20,8 +20,7 @@ var LETTRE_SUIVANTE = { // Lettre suivante lors d'une rotation du plateau de 90�
 };
 
 // Résultat
-var LARGEUR_PLATEAU = 420;
-var HAUTEUR_PLATEAU = 420;
+var COTE_PLATEAU = 420;
 var COEFFICIENT_MULTIPLICATEUR_VITESSE = 20;
 
 
@@ -259,8 +258,8 @@ function rechercherMot ()
 
     // Affichage des résultats
     var elementsFormulaire = document.forms['parametres'].elements;
-    elementsFormulaire['largeur-plateau'].value = LARGEUR_PLATEAU;
-    elementsFormulaire['hauteur-plateau'].value = HAUTEUR_PLATEAU;
+    elementsFormulaire['largeur-plateau'].value = COTE_PLATEAU;
+    elementsFormulaire['hauteur-plateau'].value = COTE_PLATEAU;
     elementsFormulaire['balle-x'].value = xDepart;
     elementsFormulaire['balle-y'].value = yDepart;
     elementsFormulaire['vitesse-x'].value = vxDepart;
