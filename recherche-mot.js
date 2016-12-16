@@ -22,7 +22,7 @@ var LETTRE_SUIVANTE = { // Lettre suivante lors d'une rotation du plateau de 90�
 // Résultat
 var LARGEUR_PLATEAU = 420;
 var HAUTEUR_PLATEAU = 420;
-var COEFFICIENT_MULTIPLICATEUR_VITESSE = 1;
+var COEFFICIENT_MULTIPLICATEUR_VITESSE = 20;
 
 
 function getMemeOrientation (a, b) // Vérifie que deux directions sont dans la même orientation (verticale ou horizontale)
