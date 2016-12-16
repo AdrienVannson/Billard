@@ -211,9 +211,9 @@ function rechercherMot ()
         var nouveauMot = "";
         for (var iLettre=0; iLettre<mot.length; iLettre++) {
             nouveauMot += LETTRE_SUIVANTE[mot[iLettre]];
-            nbRotations++;
         }
         mot = nouveauMot;
+        nbRotations++;
     }
     
 
@@ -257,7 +257,16 @@ function rechercherMot ()
     }
 
 
-    // Rotation (TODO)
+    // Rotation
+    for (var iRotation=0; iRotation<4-nbRotations; iRotation++) { // Rotation de la solution dans le sens trigonométrique
+        var ancienVX = vxDepart;
+        vxDepart = -vyDepart;
+        vyDepart = ancienVX;
+
+        var ancienXDepart = xDepart;
+        xDepart = COTE_PLATEAU - yDepart;
+        yDepart = ancienXDepart;
+    }
 
 
     // Affichage des résultats
