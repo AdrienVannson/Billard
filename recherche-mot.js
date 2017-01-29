@@ -215,14 +215,13 @@ function rechercherMot ()
         mot = nouveauMot;
         nbRotations++;
     }
-    
+
 
     // Génération des intervalles
     var intervalles = getIntervalles(mot);
-    console.log(intervalles);
 
     inequations = [
-        new Inequation(1, 0, '>')
+        new Inequation(-1, 0, '<') // y < x
     ]; // x>0 et y>0 sont ajoutés lors de la résolution du système
 
     intervalles.forEach(function(intervalle, iIntervalle) {
@@ -236,6 +235,8 @@ function rechercherMot ()
         inequations.push(inequationFin);
 
     }, this);
+
+    console.log(inequations);
 
     var solutionSysteme = resoudreSysteme(inequations);
     console.log(solutionSysteme);
