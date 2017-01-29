@@ -87,6 +87,13 @@ var Point = function (x=0, y=0)
     this.y = y;
 };
 
+function getPointIntersection (pointA, pointB, a, b) // a et b représentent l'équation de la droite: ax + y = b
+{
+    // TODO: terminer
+
+    return new Point(0, 0);
+}
+
 function getEstSolution (inequation, point)
 {
     var membreGauche = inequation.a * point.x + inequation.b;
@@ -176,7 +183,23 @@ function resoudreSysteme (inequations)
 
         }
         else { // L'inéquation ajoute une contrainte
-            // TODO
+
+            while (iFin != 0) { // Décale les points du polygone des contraintes jusqu'à ce que tous les points à supprimer se trouvent à la fin
+                iFin = getIPrecedant(iFin, nbPoints);
+                iDebut = getIPrecedant(iDebut, nbPoints);
+                points.push( points.shift() )
+            }
+
+            ajout1 = getPointIntersection(points[iDebut], points[iDebut-1], inequation.a, inequation.b);
+            ajout2 = getPointIntersection(points[nbPoints-1], points[0], inequation.a, inequation.b);
+
+            while (points.length != iDebut) {
+                points.pop();
+            }
+
+            points.push(ajout1);
+            points.push(ajout2);
+
         }
 
     }, this);
