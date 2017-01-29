@@ -114,6 +114,22 @@ function getBarycentre (points)
     return new Point(sommeX/points.length, sommeY/points.length);
 }
 
+function getISuivant (i, total)
+{
+    if (i == total-1) {
+        return 0;
+    }
+    return i + 1;
+}
+
+function getIPrecedant (i, total)
+{
+    if (i == 0) {
+        return total - 1;
+    }
+    return i - 1;
+}
+
 function resoudreSysteme (inequations)
 {
     // Sommets du polygone des contraintes, par ordre trigonométrique
@@ -136,8 +152,8 @@ function resoudreSysteme (inequations)
 
         points.forEach(function(point, iPoint) {
 
-            var iPrecedant = iPoint == 0 ? nbPoints-1 : iPoint-1;
-            var iSuivant = iPoint == nbPoints-1 ? 0 : iPoint+1;
+            var iPrecedant = getIPrecedant(iPoint, nbPoints);
+            var iSuivant = getISuivant(iPoint, nbPoints);
 
             if (!getEstSolution(inequation, point)) {
 
@@ -156,7 +172,7 @@ function resoudreSysteme (inequations)
 
             if (!getEstSolution(inequation, points[0])) { // Le système n'admet pas de solution
                 return -1;
-            }
+            } // Sinon: l'inéquation n'ajoute aucune contrainte
 
         }
         else { // L'inéquation ajoute une contrainte
@@ -166,8 +182,13 @@ function resoudreSysteme (inequations)
     }, this);
 
 
-    return new Point(1.725, 0.5);
-    return getBarycentre(points);
+    //return new Point(1.725, 0.5);
+
+    resultat = getBarycentre(points);
+
+    alert(resultat.x + " " + resultat.y);
+
+    return resultat;
 }
 
 
@@ -236,10 +257,7 @@ function rechercherMot ()
 
     }, this);
 
-    console.log(inequations);
-
     var solutionSysteme = resoudreSysteme(inequations);
-    console.log(solutionSysteme);
 
     if (solutionSysteme == -1) {
         Materialize.toast('Aucune solution', 3000);
