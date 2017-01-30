@@ -87,11 +87,42 @@ var Point = function (x=0, y=0)
     this.y = y;
 };
 
-function getPointIntersection (pointA, pointB, a, b) // a et b représentent l'équation de la droite: ax + y = b
+function getEquation (point1, point2)
 {
-    // TODO: terminer
+    var x1 = point1.x;
+    var y1 = point1.y;
+    var x2 = point2.x;
+    var y2 = point2.y;
 
-    return new Point(0, 0);
+    var a = (y1 - y2) / (x1 - x2);
+    var b = y1 - (x1 * a);
+
+    return [a, b];
+}
+
+function getPointIntersection (point1, point2, a, b) // a et b représentent l'équation de la droite: ax + y = b
+{
+    b = -b;
+
+    if (point1.x == point2.x) {
+        var y = a * point1.x + b;
+        return new Point(point1.x, y);
+    }
+
+    if (point1.y == point2.y) {
+        var x = (point1.y - b) / a;
+        return new Point(x, point1.y);
+    }
+
+    var equation = getEquation(point1, point2);
+
+    var c = equation[0];
+    var d = equation[1];
+
+    var y = (b - d * (a / c)) / (1 - a / c);
+    var x = (y - b) / a;
+
+    return new Point(x, -y);
 }
 
 function getEstSolution (inequation, point)
@@ -141,11 +172,13 @@ function resoudreSysteme (inequations)
 {
     // Sommets du polygone des contraintes, par ordre trigonométrique
     // Contraintes de départ : x>0 ; x<1000 ; y > 0 ; y < 1000
+    var valeurMax = 1000;
+
     var points = [
         new Point(0, 0),
-        new Point(1000, 0),
-        new Point(1000, 1000),
-        new Point(0, 1000)
+        new Point(valeurMax, 0),
+        new Point(valeurMax, valeurMax),
+        new Point(0, valeurMax)
     ];
 
 
@@ -184,6 +217,14 @@ function resoudreSysteme (inequations)
         }
         else { // L'inéquation ajoute une contrainte
 
+            console.log('Ajout d\'une contrainte');
+
+            console.log('Contrainte: ' + inequation.a + ' ' + inequation.b + ' ' + inequation.comp);
+
+            points.forEach(function(point) {
+                console.log(point.x + ' ' + point.y);
+            }, this);
+
             while (iFin != 0) { // Décale les points du polygone des contraintes jusqu'à ce que tous les points à supprimer se trouvent à la fin
                 iFin = getIPrecedant(iFin, nbPoints);
                 iDebut = getIPrecedant(iDebut, nbPoints);
@@ -199,6 +240,15 @@ function resoudreSysteme (inequations)
 
             points.push(ajout1);
             points.push(ajout2);
+
+            console.log('Après:');
+
+            console.log('Taille: ' + points.length);
+            points.forEach(function(point) {
+                console.log(point.x + ' ' + point.y);
+            }, this);
+
+            console.log('FIN\n');
 
         }
 
