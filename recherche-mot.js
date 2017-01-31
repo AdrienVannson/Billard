@@ -94,7 +94,7 @@ function getEquation (point1, point2)
     var x2 = point2.x;
     var y2 = point2.y;
 
-    var a = (y1 - y2) / (x1 - x2);
+    var a = (y2 - y1) / (x1 - x2);
     var b = a * x1 + y1;
 
     return [a, b];
@@ -113,6 +113,16 @@ function getPointIntersection (point1, point2, a, b) // a et b représentent l'�
     }
 
     var equation = getEquation(point1, point2);
+
+    if (a == 0) {
+        var x = (equation[1] - b) / equation[0];
+        console.log('Début');
+        console.log(point1);
+        console.log(point2);
+        console.log(equation);
+        console.log('Fin');
+        return new Point(x, b);
+    }
 
     var c = equation[0];
     var d = equation[1];
@@ -234,10 +244,6 @@ function resoudreSysteme (inequations)
 
             console.log('Ajout d\'une contrainte');
 
-            points.forEach(function(point) {
-                console.log(point.x + ' ' + point.y);
-            }, this);
-
             console.log("DF: " + iDebut + " " + iFin);
 
             while (iFin != 0) { // Décale les points du polygone des contraintes jusqu'à ce que tous les points à supprimer se trouvent à la fin
@@ -267,16 +273,16 @@ function resoudreSysteme (inequations)
 
         }
 
+        points.forEach(function(point) {
+            console.log(point);
+        }, this);
+
         console.log('----------------------\n');
 
     }, this);
 
 
     //return new Point(1.725, 0.5);
-
-    points.forEach(function(point) {
-        console.log(point);
-    }, this);
 
     resultat = getBarycentre(points);
 
@@ -396,10 +402,13 @@ function rechercherMot ()
     demarrer();
 }
 
-
+/*
 inequations = [];
 
 inequations.push(new Inequation(-1, 0, '<'));
+inequations.push(new Inequation(0, 5, '<'));
+inequations.push(new Inequation(5, 20, '>'));
 
 
 console.log(resoudreSysteme(inequations));
+*/
