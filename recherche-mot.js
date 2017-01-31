@@ -95,22 +95,20 @@ function getEquation (point1, point2)
     var y2 = point2.y;
 
     var a = (y1 - y2) / (x1 - x2);
-    var b = y1 - (x1 * a);
+    var b = a * x1 + y1;
 
     return [a, b];
 }
 
 function getPointIntersection (point1, point2, a, b) // a et b représentent l'équation de la droite: ax + y = b
 {
-    b = -b;
-
     if (point1.x == point2.x) {
-        var y = a * point1.x + b;
+        var y = b - a * point1.x;
         return new Point(point1.x, y);
     }
 
     if (point1.y == point2.y) {
-        var x = (point1.y - b) / a;
+        var x = (b - point1.y) / a;
         return new Point(x, point1.y);
     }
 
@@ -119,6 +117,7 @@ function getPointIntersection (point1, point2, a, b) // a et b représentent l'�
     var c = equation[0];
     var d = equation[1];
 
+    b = -b;
     var y = (b - d * (a / c)) / (1 - a / c);
     var x = (y - b) / a;
 
@@ -127,8 +126,8 @@ function getPointIntersection (point1, point2, a, b) // a et b représentent l'�
 
 function getEstSolution (inequation, point)
 {
-    var membreGauche = inequation.a * point.x + inequation.b;
-    var membreDroite = point.y;
+    var membreGauche = inequation.a * point.x + point.y;
+    var membreDroite = inequation.b;
 
     if (inequation.comp == '<') {
         return membreGauche < membreDroite;
@@ -172,7 +171,7 @@ function resoudreSysteme (inequations)
 {
     // Sommets du polygone des contraintes, par ordre trigonométrique
     // Contraintes de départ : x>0 ; x<1000 ; y > 0 ; y < 1000
-    var valeurMax = 1000;
+    var valeurMax = 10;
 
     var points = [
         new Point(0, 0),
@@ -183,6 +182,22 @@ function resoudreSysteme (inequations)
 
 
     inequations.forEach(function(inequation) {
+
+        console.log('Inequation: ' + inequation.a + ' ' + inequation.b + ' ' + inequation.comp);
+
+        console.log('Points: ');
+
+        points.forEach(function(point, iPoint) {
+
+            var iPrecedant = getIPrecedant(iPoint, nbPoints);
+            var iSuivant = getISuivant(iPoint, nbPoints);
+
+            var estSolution = getEstSolution(inequation, point);
+            console.log(point.x + ' ' + point.y + ' ' + estSolution);
+
+        }, this);
+
+        console.log('Fin points');
 
         // Début inclus, fin excluse
         var iDebut = -1;
@@ -219,11 +234,11 @@ function resoudreSysteme (inequations)
 
             console.log('Ajout d\'une contrainte');
 
-            console.log('Contrainte: ' + inequation.a + ' ' + inequation.b + ' ' + inequation.comp);
-
             points.forEach(function(point) {
                 console.log(point.x + ' ' + point.y);
             }, this);
+
+            console.log("DF: " + iDebut + " " + iFin);
 
             while (iFin != 0) { // Décale les points du polygone des contraintes jusqu'à ce que tous les points à supprimer se trouvent à la fin
                 iFin = getIPrecedant(iFin, nbPoints);
@@ -252,10 +267,16 @@ function resoudreSysteme (inequations)
 
         }
 
+        console.log('----------------------\n');
+
     }, this);
 
 
     //return new Point(1.725, 0.5);
+
+    points.forEach(function(point) {
+        console.log(point);
+    }, this);
 
     resultat = getBarycentre(points);
 
@@ -374,3 +395,11 @@ function rechercherMot ()
     $('#fenetre-calcul').modal('close');
     demarrer();
 }
+
+
+inequations = [];
+
+inequations.push(new Inequation(-1, 0, '<'));
+
+
+console.log(resoudreSysteme(inequations));
