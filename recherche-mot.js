@@ -353,6 +353,9 @@ function rechercherMot ()
             if (dernierVertical == caractere) {
                 return motInvalide ();
             }
+            if (dernierVertical == '_') {
+                premierVertical = caractere;
+            }
             dernierVertical = caractere;
         }
 
@@ -381,6 +384,8 @@ function rechercherMot ()
     // Génération des intervalles
     var intervalles = getIntervalles(mot);
 
+    console.log(intervalles);
+
     inequations = [
         new Inequation(-1, 0, '<') // y < x
     ]; // x>0 et y>0 sont ajoutés lors de la résolution du système
@@ -399,6 +404,8 @@ function rechercherMot ()
 
     var solutionSysteme = resoudreSysteme(inequations);
 
+    console.log(solutionSysteme);
+
     if (solutionSysteme == -1) {
         Materialize.toast('Aucune solution', 3000);
         return;
@@ -408,6 +415,11 @@ function rechercherMot ()
     // Calcul des résultats
     var vxDepart = -1 * COEFFICIENT_MULTIPLICATEUR_VITESSE;
     var vyDepart = (1 / solutionSysteme.x) * COEFFICIENT_MULTIPLICATEUR_VITESSE;
+
+    if (premierVertical == 'B') {
+        vyDepart = -vyDepart;
+    }
+
     var xDepart = 0;
     var yDepart = Math.abs((COTE_PLATEAU * solutionSysteme.y) * vyDepart / vxDepart);
 
