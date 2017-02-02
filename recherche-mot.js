@@ -425,7 +425,7 @@ function rechercherMot ()
     var xDepart = 0;
     var yDepart = Math.abs((COTE_PLATEAU * solutionSysteme.y) * vyDepart / vxDepart);
 
-    if (mot[1] == 'H') {
+    if (premierVertical == 'H') {
         yDepart = COTE_PLATEAU - yDepart;
     }
 
