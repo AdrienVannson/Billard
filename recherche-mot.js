@@ -181,7 +181,7 @@ function resoudreSysteme (inequations)
 {
     // Sommets du polygone des contraintes, par ordre trigonométrique
     // Contraintes de départ : x>0 ; x<1000 ; y > 0 ; y < 1000
-    var valeurMax = 10;
+    var valeurMax = 1000;
 
     var points = [
         new Point(0, 0),
@@ -287,6 +287,16 @@ function resoudreSysteme (inequations)
     resultat = getBarycentre(points);
 
     alert(resultat.x + " " + resultat.y);
+
+    succes = true;
+
+    inequations.forEach(function(inequation) {
+        if (!getEstSolution(inequation, resultat)) {
+            succes = false;
+        }
+    }, this);
+
+    alert('Succes: ' + succes);
 
     return resultat;
 }
