@@ -325,21 +325,51 @@ function estValide (positionsChoisies, intervalles)
  * Recherche
  */
 
+function motInvalide ()
+{
+    Materialize.toast('Mot invalide', 3000);
+    return false;
+}
+
 function rechercherMot ()
 {
     var mot = document.forms['formulaire-mot'].elements['mot'].value;
 
     // Vérification de la validité du mot
     if (! /^[HBGD]+$/.test(mot)) { // Le mot donné est invalide
-        Materialize.toast('Mot invalide', 3000);
-        return;
+        return motInvalide ();
     }
+
+
+    // Vérification que les lettres G et D ainsi que H et B s'alternent
+    var dernierVertical = '_';
+    var dernierHorizontal = '_';
+
+    for (var iCaractere=0; iCaractere<mot.length; iCaractere++) {
+
+        var caractere = mot[iCaractere];
+
+        if (getMemeOrientation(caractere, 'H')) {
+            if (dernierVertical == caractere) {
+                return motInvalide ();
+            }
+            dernierVertical = caractere;
+        }
+
+        if (getMemeOrientation(caractere, 'G')) {
+            if (dernierHorizontal == caractere) {
+                return motInvalide ();
+            }
+            dernierHorizontal = caractere;
+        }
+	}
+
 
     // Rotation du mot pour qu'il commence par un G
     var nbRotations = 0;
 
     while (mot[0] != 'G') {
-        var nouveauMot = "";
+        var nouveauMot = '';
         for (var iLettre=0; iLettre<mot.length; iLettre++) {
             nouveauMot += LETTRE_SUIVANTE[mot[iLettre]];
         }
