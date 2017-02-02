@@ -380,6 +380,8 @@ function rechercherMot ()
         nbRotations++;
     }
 
+    console.log('Mot avec rotations: ' + nouveauMot);
+
 
     // Génération des intervalles
     var intervalles = getIntervalles(mot);

@@ -92,6 +92,10 @@ function getPosition (temps)
 
 function allerAuTemps (temps)
 {
+    if (temps < 0) {
+        temps = 0;
+    }
+
     var pos = getPosition(temps);
 
     bille.style.left = pos[0] + 'px';
