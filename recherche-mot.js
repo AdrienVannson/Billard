@@ -353,9 +353,6 @@ function rechercherMot ()
             if (dernierVertical == caractere) {
                 return motInvalide ();
             }
-            if (dernierVertical == '_') {
-                premierVertical = caractere;
-            }
             dernierVertical = caractere;
         }
 
@@ -411,6 +408,16 @@ function rechercherMot ()
     if (solutionSysteme == -1) {
         Materialize.toast('Aucune solution', 3000);
         return;
+    }
+
+
+    var premierVertical = '_';
+
+    for (var iCaractere=0; iCaractere<mot.length; iCaractere++) {
+        if (getMemeOrientation(mot[iCaractere], 'H')) {
+            premierVertical = mot[iCaractere];
+            break;
+        }
     }
 
 
