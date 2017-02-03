@@ -116,11 +116,6 @@ function getPointIntersection (point1, point2, a, b) // a et b représentent l'�
 
     if (a == 0) {
         var x = (equation[1] - b) / equation[0];
-        console.log('Début');
-        console.log(point1);
-        console.log(point2);
-        console.log(equation);
-        console.log('Fin');
         return new Point(x, b);
     }
 
@@ -180,7 +175,7 @@ function getIPrecedant (i, total)
 function resoudreSysteme (inequations)
 {
     // Sommets du polygone des contraintes, par ordre trigonométrique
-    // Contraintes de départ : x>0 ; x<1000 ; y > 0 ; y < 1000
+    // Contraintes de départ : x>0 ; x<max ; y > 0 ; y < max
     var valeurMax = 10; // TODO: calculer en fonction du mot
 
     var points = [
