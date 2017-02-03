@@ -455,14 +455,3 @@ function rechercherMot ()
     $('#fenetre-calcul').modal('close');
     demarrer();
 }
-
-/*
-inequations = [];
-
-inequations.push(new Inequation(-1, 0, '<'));
-inequations.push(new Inequation(0, 5, '<'));
-inequations.push(new Inequation(5, 20, '>'));
-
-
-console.log(resoudreSysteme(inequations));
-*/
