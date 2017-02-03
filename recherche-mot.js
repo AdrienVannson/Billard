@@ -181,7 +181,7 @@ function resoudreSysteme (inequations)
 {
     // Sommets du polygone des contraintes, par ordre trigonométrique
     // Contraintes de départ : x>0 ; x<1000 ; y > 0 ; y < 1000
-    var valeurMax = 1000;
+    var valeurMax = 10; // TODO: calculer en fonction du mot
 
     var points = [
         new Point(0, 0),
