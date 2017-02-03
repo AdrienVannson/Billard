@@ -372,7 +372,7 @@ function rechercherMot ()
         nbRotations++;
     }
 
-    console.log('Mot avec rotations: ' + nouveauMot);
+    console.log('Mot avec rotations: ' + mot);
 
 
     // Génération des intervalles
