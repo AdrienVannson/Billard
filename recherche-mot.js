@@ -12,7 +12,7 @@ var DIRECTIONS_OPPOSEES = {
     'D' : 'G'
 };
 
-var LETTRE_SUIVANTE = { // Lettre suivante lors d'une rotation du plateau de 90° dans le sens trigonomètrique
+var LETTRE_SUIVANTE = { // Lettre suivante lors d'une rotation du plateau de 90° dans le sens trigonométrique
     'H': 'G',
     'B': 'D',
     'G': 'B',
