@@ -186,7 +186,10 @@ function resoudreSysteme (inequations)
     ];
 
 
-    inequations.forEach(function(inequation) {
+    for (var iInequation=0; iInequation<inequations.length; iInequation++) {
+
+        var inequation = inequations[iInequation];
+
 
         console.log('Inequation: ' + inequation.a + ' ' + inequation.b + ' ' + inequation.comp);
 
@@ -274,7 +277,7 @@ function resoudreSysteme (inequations)
 
         console.log('----------------------\n');
 
-    }, this);
+    }
 
 
     //return new Point(1.725, 0.5);
