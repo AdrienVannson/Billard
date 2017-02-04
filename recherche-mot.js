@@ -271,9 +271,6 @@ function resoudreSysteme (inequations)
 
     }
 
-
-    //return new Point(1.725, 0.5);
-
     resultat = getBarycentre(points);
 
     alert(resultat.x + " " + resultat.y);
@@ -321,6 +318,12 @@ function motInvalide ()
     return false;
 }
 
+function motImpossible ()
+{
+    Materialize.toast('Aucune solution', 3000);
+    return false;
+}
+
 function rechercherMot ()
 {
     var mot = document.forms['formulaire-mot'].elements['mot'].value;
@@ -341,14 +344,14 @@ function rechercherMot ()
 
         if (getMemeOrientation(caractere, 'H')) {
             if (dernierVertical == caractere) {
-                return motInvalide ();
+                return motImpossible ();
             }
             dernierVertical = caractere;
         }
 
         if (getMemeOrientation(caractere, 'G')) {
             if (dernierHorizontal == caractere) {
-                return motInvalide ();
+                return motImpossible ();
             }
             dernierHorizontal = caractere;
         }
@@ -396,8 +399,7 @@ function rechercherMot ()
     console.log(solutionSysteme);
 
     if (solutionSysteme == -1) {
-        Materialize.toast('Aucune solution', 3000);
-        return;
+        return motImpossible ();
     }
 
 
