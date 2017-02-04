@@ -260,13 +260,6 @@ function resoudreSysteme (inequations)
             points.push(ajout1);
             points.push(ajout2);
 
-            console.log('Après:');
-
-            console.log('Taille: ' + points.length);
-            points.forEach(function(point) {
-                console.log(point.x + ' ' + point.y);
-            }, this);
-
             console.log('FIN\n');
 
         }
