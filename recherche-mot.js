@@ -191,7 +191,7 @@ function resoudreSysteme (inequations)
         var inequation = inequations[iInequation];
 
 
-        console.log('Inequation: ' + inequation.a + ' ' + inequation.b + ' ' + inequation.comp);
+        console.log('Inequation: ' + inequation.a + 'x + y ' + inequation.comp + ' ' + inequation.b);
 
         console.log('Points: ');
 
