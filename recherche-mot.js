@@ -122,11 +122,10 @@ function getPointIntersection (point1, point2, a, b) // a et b repr√©sentent l'√
     var c = equation[0];
     var d = equation[1];
 
-    b = -b;
-    var y = (b - d * (a / c)) / (1 - a / c);
-    var x = (y - b) / a;
+    var x = (b - d) / (a - c);
+    var y = b - a*x;
 
-    return new Point(x, -y);
+    return new Point(x, y);
 }
 
 function getEstSolution (inequation, point)
