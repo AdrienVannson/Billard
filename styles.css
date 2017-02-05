@@ -11,6 +11,13 @@
     margin-right: 64px;
 }
 
+@media (max-width: 992px) {
+    #conteneur {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
 
 #conteneur-plateau {
     margin: auto;
