@@ -273,7 +273,7 @@ function resoudreSysteme (inequations)
 
     resultat = getBarycentre(points);
 
-    alert(resultat.x + " " + resultat.y);
+    // alert(resultat.x + " " + resultat.y);
 
     succes = true;
 
@@ -283,7 +283,7 @@ function resoudreSysteme (inequations)
         }
     }, this);
 
-    alert('Succes: ' + succes);
+    // alert('Succes: ' + succes);
 
     return resultat;
 }
